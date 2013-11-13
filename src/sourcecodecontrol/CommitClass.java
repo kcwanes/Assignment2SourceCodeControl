@@ -7,7 +7,7 @@ import java.lang.String;
 
 public class CommitClass {
 
-	public void commit() {
+	public void commitMethod() {
 		String fileName;
 
 		Scanner in = new Scanner(System.in);

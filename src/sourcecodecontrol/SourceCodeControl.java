@@ -38,6 +38,8 @@ public class SourceCodeControl {
         else if (cmd.equalsIgnoreCase("Commit"))
         {
             EchoString("Starting Commit...");
+            CommitClass commit = new CommitClass();
+            commit.commitMethod();
             return EchoString("You Have Committed Your Files.");
         }
         else if (cmd.equalsIgnoreCase("Revert"))
