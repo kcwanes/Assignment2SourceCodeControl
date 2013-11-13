@@ -14,6 +14,9 @@ public class CommitClass {
 
 		System.out.println("Enter the name of the file you wish to commit:");
 		fileName = in.nextLine();
+		System.out.println("\nYou've entered: '" + fileName + "'.");
+		System.out.println("Is this correct?");
+
 	}
 
 }
