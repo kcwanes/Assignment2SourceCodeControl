@@ -17,35 +17,33 @@ public class CommitClass {
 		fileName = in.nextLine();
 
 		// keep getting filenames while the user did not enter 'exit'
-		while (!fileName.equalsIgnoreCase("exit")) {
-			System.out.println("\nYou've entered: '" + fileName + "'.");
-			System.out.println("Is this correct? (y|n)");
-			confirm = in.nextLine();
+		// while (!fileName.equalsIgnoreCase("exit")) {
+		System.out.println("\nYou've entered: '" + fileName + "'.");
+		System.out.println("Is this correct? (y|n)");
+		confirm = in.nextLine();
 
-			if (confirm.equalsIgnoreCase("y")) {
-				System.out.println("You said yes.");
+		if (confirm.equalsIgnoreCase("y")) {
+			System.out.println("You said yes.");
 
-				try {
-					//dont know what Im doing here
-					PrintWriter out = new PrintWriter(new FileWriter(fileName));
-				} catch (FileNotFoundException e) {
-					System.err.println("FileNotFoundException: "
-							+ e.getMessage());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					System.err.println("Caught IOException: " + e.getMessage());
-				}
-
-			} else if (confirm.equalsIgnoreCase("n")) {
-				System.out.println("You said no.");
-				// allow user to re-enter filename
-
+			try {
+				System.out.println("\nAgain, You've entered: '" + fileName
+						+ "'.");
+				FileReader reader = new FileReader(fileName);
+				Scanner inFile = new Scanner(reader);
+				// object inFile can now read text from the user specified
+				// file, fileName
+			} catch (IOException exception) {
+				exception.printStackTrace();
 			}
+
+		} else if (confirm.equalsIgnoreCase("n")) {
+			System.out.println("You said no.");
+			// allow user to re-enter filename
+
 		}
+		// }
 
 		System.out.println("You have hit 'exit'.");
 
 	}
-
 }
