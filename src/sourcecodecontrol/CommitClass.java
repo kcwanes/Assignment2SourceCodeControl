@@ -34,6 +34,7 @@ public class CommitClass {
 				// file, fileName
 			} catch (IOException exception) {
 				exception.printStackTrace();
+				System.out.println("Can't find that file!");
 			}
 
 		} else if (confirm.equalsIgnoreCase("n")) {
