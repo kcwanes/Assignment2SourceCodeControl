@@ -1,9 +1,12 @@
 package sourcecodecontrol;
 
 import java.io.*;
+import java.nio.*;
 import java.sql.*;
 import java.util.Scanner;
 import java.lang.String;
+import java.lang.Object;
+
 
 public class CommitClass {
 
@@ -37,14 +40,19 @@ public class CommitClass {
 				Scanner inFile = new Scanner(reader);
 
 				//create a file for writing to. hard-code it to 'fileOutput.txt' for now
-				PrintWriter out = new PrintWriter("fileOutput.txt");
+				PrintWriter out = new PrintWriter("/Users/vuk/Assignment2SourceCodeControl/src/sourcecodecontrol/fileOutput.txt");
 				
 				//while there is data to read in the input file inFile
 				while (inFile.hasNextLine())
 				{
 					String line = inFile.nextLine();
 					System.out.println(line);
-					out.print(line);
+					out.println(line); 
+					//KNOWN ISSUES:
+					//-output file will have a new line appended to the
+					//end even if the input file did not have one
+					//-apostrophes and possible other characters do
+					//not get copied properly
 				}
 				
 				out.close();
