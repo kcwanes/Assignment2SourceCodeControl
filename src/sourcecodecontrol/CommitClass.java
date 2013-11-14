@@ -15,7 +15,6 @@ public class CommitClass {
 		System.out
 				.println("Enter the name of the file you wish to commit (or 'exit'):");
 		fileName = in.nextLine();
-
 		// keep getting filenames while the user did not enter 'exit'
 		// while (!fileName.equalsIgnoreCase("exit")) {
 		System.out.println("\nYou've entered: '" + fileName + "'.");
@@ -28,15 +27,34 @@ public class CommitClass {
 			try {
 				System.out.println("\nAgain, You've entered: '" + fileName
 						+ "'.");
-				FileReader reader = new FileReader(fileName);
-				Scanner inFile = new Scanner(reader);
+				
 				// object inFile can now read text from the user specified
 				// file, fileName
+				
+				//FOR NOW this is hardcoded to file 'file.txt' since I cant actually get 
+				//it to work for a user specified file... yet
+				FileReader reader = new FileReader("/Users/vuk/Assignment2SourceCodeControl/src/sourcecodecontrol/file.txt");
+				Scanner inFile = new Scanner(reader);
+
+				//create a file for writing to. hard-code it to 'fileOutput.txt' for now
+				PrintWriter out = new PrintWriter("fileOutput.txt");
+				
+				//while there is data to read in the input file inFile
+				while (inFile.hasNextLine())
+				{
+					String line = inFile.nextLine();
+					System.out.println(line);
+					out.print(line);
+				}
+				
+				out.close();
 			} catch (IOException exception) {
 				exception.printStackTrace();
 				System.out.println("Can't find that file!");
 			}
-
+			
+	
+			
 		} else if (confirm.equalsIgnoreCase("n")) {
 			System.out.println("You said no.");
 			// allow user to re-enter filename
