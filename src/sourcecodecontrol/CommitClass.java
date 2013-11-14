@@ -28,7 +28,7 @@ public class CommitClass {
 				System.out.println("\nAgain, You've entered: '" + fileName
 						+ "'.");
 				
-				// object inFile can now read text from the user specified
+				// ideally, object inFile can read text from the user specified
 				// file, fileName
 				
 				//FOR NOW this is hardcoded to file 'file.txt' since I cant actually get 
