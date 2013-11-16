@@ -9,6 +9,7 @@ import java.lang.Object;
 
 
 public class CommitClass {
+	//Comment to test commit from desktop
 
 	public void commitMethod() {
 		String fileName;
