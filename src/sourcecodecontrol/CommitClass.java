@@ -7,9 +7,8 @@ import java.util.Scanner;
 import java.lang.String;
 import java.lang.Object;
 
-
 public class CommitClass {
-	//Comment to test commit from desktop
+	// Comment to test commit from desktop
 
 	public void commitMethod() {
 		String fileName;
@@ -31,39 +30,40 @@ public class CommitClass {
 			try {
 				System.out.println("\nAgain, You've entered: '" + fileName
 						+ "'.");
-				
+
 				// ideally, object inFile can read text from the user specified
 				// file, fileName
-				
-				//FOR NOW this is hardcoded to file 'file.txt' since I cant actually get 
-				//it to work for a user specified file... yet
-				FileReader reader = new FileReader("/Users/vuk/Assignment2SourceCodeControl/src/sourcecodecontrol/file.txt");
+
+				// FOR NOW this is hardcoded to file 'file.txt' since I cant
+				// actually get
+				// it to work for a user specified file... yet
+				FileReader reader = new FileReader(
+						"/Users/vuk/Assignment2SourceCodeControl/src/sourcecodecontrol/file.txt");
 				Scanner inFile = new Scanner(reader);
 
-				//create a file for writing to. hard-code it to 'fileOutput.txt' for now
-				PrintWriter out = new PrintWriter("/Users/vuk/Assignment2SourceCodeControl/src/sourcecodecontrol/fileOutput.txt");
-				
-				//while there is data to read in the input file inFile
-				while (inFile.hasNextLine())
-				{
+				// create a file for writing to. hard-code it to
+				// 'fileOutput.txt' for now
+				PrintWriter out = new PrintWriter(
+						"/Users/vuk/Assignment2SourceCodeControl/src/sourcecodecontrol/fileOutput.txt");
+
+				// while there is data to read in the input file inFile
+				while (inFile.hasNextLine()) {
 					String line = inFile.nextLine();
 					System.out.println(line);
-					out.println(line); 
-					//KNOWN ISSUES:
-					//-output file will have a new line appended to the
-					//end even if the input file did not have one
-					//-apostrophes and possible other characters do
-					//not get copied properly
+					out.println(line);
+					// KNOWN ISSUES:
+					// -output file will have a new line appended to the
+					// end even if the input file did not have one
+					// -apostrophes and possible other characters do
+					// not get copied properly
 				}
-				
+
 				out.close();
 			} catch (IOException exception) {
 				exception.printStackTrace();
 				System.out.println("Can't find that file!");
 			}
-			
-	
-			
+
 		} else if (confirm.equalsIgnoreCase("n")) {
 			System.out.println("You said no.");
 			// allow user to re-enter filename
