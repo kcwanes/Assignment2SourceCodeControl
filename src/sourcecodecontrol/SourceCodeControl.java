@@ -1,6 +1,7 @@
 package sourcecodecontrol;
 
 import java.util.Scanner;
+import java.io.IOException;
 import java.lang.String;
 
 
@@ -12,8 +13,9 @@ public class SourceCodeControl {
 	
     /**
      * @param args the command line arguments
+     * @throws IOException 
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner uIS = new Scanner(System.in);
         String B = "";
         System.out.println("[Commit | Checkout | Revert | Merge | Branch | Delete | Exit]");
@@ -29,7 +31,7 @@ public class SourceCodeControl {
         return 0;
     }
     
-    public static int ProcessCommand(String cmd){
+    public static int ProcessCommand(String cmd) throws IOException{
         if (cmd.equalsIgnoreCase("Checkout"))
         {
             EchoString("Starting Checkout...");
