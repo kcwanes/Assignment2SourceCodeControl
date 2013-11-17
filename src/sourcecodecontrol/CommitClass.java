@@ -72,7 +72,7 @@ public class CommitClass {
 		System.out.println("Enter the name of the file you wish to commit:");
 		fileName = in.nextLine();
 
-		pathWithFileName = path + "\\" + fileName;
+		pathWithFileName = path + File.separator + fileName;
 
 		System.out.println("\nThe file is: ");
 		System.out.println(pathWithFileName);
@@ -95,7 +95,7 @@ public class CommitClass {
 			String newFile = appendTimeStamp(fileName, theTime);
 			System.out.println("newFile = " + newFile);
 			
-			String newFilePath = path + "\\" + newFile;
+			String newFilePath = path + File.separator + newFile;
 			System.out.println("newFilePath = " + newFilePath);
 			
 			File src = new File(pathWithFileName);
