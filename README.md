@@ -4,10 +4,11 @@ Simple Source Code Control (SCCC)
 Source Code Control Project for CSC444
 Authors: Vuk Skulic & Chris Wanes
 
-Assignment Requirements:
+Assignment:
 
-- Design and develop a simple command-line source code control system. 
-  The system should be capable of satisfying the following requirements.
+Design and develop a simple command-line source code control system. 
+The system should be capable of satisfying the following requirements:
+  
 - Handle ASCII text files only.
 - Put a file under source code control.
 - Check in a modified version of a file after the user edits it.
