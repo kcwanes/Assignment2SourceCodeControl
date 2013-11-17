@@ -1,4 +1,4 @@
-Assignment2SourceCodeControl
+Simple Source Code Control (SCCC)
 ============================
 
 Source Code Control Project for CSC444
