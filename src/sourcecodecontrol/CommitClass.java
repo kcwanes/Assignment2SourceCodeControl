@@ -246,7 +246,8 @@ public class CommitClass {
 			File dest = new File(newFilePathStripped);
 			dest.mkdirs();
 			
-			String newPath = newFilePathStripped + "\\" + newFile;
+			//trying fix Unix bug
+			String newPath = newFilePathStripped + File.separator + newFile;
 			System.out.println("newPath: ");
 			System.out.println(newPath);
 			
@@ -259,12 +260,18 @@ public class CommitClass {
 			//newFilePathWithComment = newFilePathWithComment.replace("\\", "\\\\");
 			//System.out.println("newFilePathWithComment = " + newFilePathWithComment);
 
-			newFilePathStripped = newFilePathStripped + File.separator + File.separator + newFileWithComment;
+			//cause of a bug (remove two file separators and put one instead?)
+			newFilePathStripped = newFilePathStripped + File.separator + newFileWithComment;
 			//newFilePathStripped = newFilePathStripped.replace("\\", "\\\\");
 			
 			System.out.println("new newFilePathStripped:");
 			System.out.println(newFilePathStripped);
+			
+			System.out.println("File separator is:");
+			System.out.println(File.separator);
 
+			//src = new File(newFilePathStripped);
+			
 			copyFile(src, newDest);
 			
 			
