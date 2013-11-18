@@ -11,6 +11,43 @@ import java.lang.Object;
 public class CommitClass {
 
 	/**
+	 * Gets the file extension of a file
+	 * @param file filename of the file whose extension we're getting
+	 * @return the extension as a string
+	 */
+
+	public String getExtension (String file){
+		// finds the extension of the input file
+		String extension = "";
+		int k = file.lastIndexOf('.');
+		if (k > 0) {
+			extension = file.substring(k);
+		}
+		return extension;
+	}
+	
+	
+	/**
+	 * Strips the extension of a file
+	 * 
+	 * @param file the file whose extension is to be removed
+	 * @return the new filename without the extension
+	 */
+	
+	public String stripExtension (String file){
+
+		String extension = getExtension(file);
+
+		// test output (delete after)
+		System.out.println("The extension of " + file + " is " + extension);
+
+		// replace the extension of the filename with nothing so that
+		// we can append the timestamp before the extension
+		file = file.replace(extension, "");
+		return file;
+	}
+	
+	/**
 	 * Adds a timestamp string to the end of a filename (but before the
 	 * extension) e.g. file.txt will become file-TIMESTAMP.txt
 	 * 
@@ -18,10 +55,12 @@ public class CommitClass {
 	 *            contains the filename string that will be modified
 	 * @return the new filename complete with the timestamp
 	 */
-	// function will add a timestamp to the end
-	// of the file with filename 'file'
+	
 	public String appendTimeStamp(String file, String time) {
-		String extension = "";
+		
+		String strippedFile = stripExtension(file);
+		String extension = getExtension(file);
+		String newFile;
 
 		// test output (delete after)
 		System.out.println(time);
@@ -34,27 +73,25 @@ public class CommitClass {
 		// (this was the source of a frustrating bug)
 		time = time.replace(':', '-');
 
-		// finds the extension of the input file
-		int k = file.lastIndexOf('.');
-		if (k > 0) {
-			extension = file.substring(k);
-		}
-
-		// test output (delete after)
-		System.out.println("The extension of " + file + " is " + extension);
-
-		// replace the extension of the filename with nothing so that
-		// we can append the timestamp before the extension
-		file = file.replace(extension, "");
+		//String extension = removeExtension(file);
 
 		// append the timestamp followed by the extension
-		file = file + "-" + time + extension;
+		newFile = strippedFile + "-" + time + extension;
 
 		// test output (delete after)
-		System.out.println("new fileName = " + file);
+		System.out.println("BLAH new fileName = " + newFile);
 
-		return file;
+		return newFile;
 	}
+	/**
+	 * Adds a timestamp string to the end of a filename
+	 * followed by '-comment' (but before the
+	 * extension) e.g. file.txt will become file-TIMESTAMP-comment.txt
+	 * 
+	 * @param file
+	 *            contains the filename string that will be modified
+	 * @return the new filename complete with the timestamp
+	 */
 	
 	public String appendTimeStampWithComment(String file, String time, String comment) {
 		String extension = "";
@@ -162,8 +199,8 @@ public class CommitClass {
 		
 		pathWithFileName = path + File.separator + fileName;
 		
-		File repoFolder = new File (pathWithFileName);
-		repoFolder.mkdirs();
+		//File repoFolder = new File (pathWithFileName);
+		//repoFolder.mkdirs();
 
 		System.out.println("\nThe file is: ");
 		System.out.println(pathWithFileName);
@@ -188,32 +225,51 @@ public class CommitClass {
 			System.out.println("You said yes.");
 			// call the method that will append a timestamp to the filename
 			String newFile = appendTimeStamp(fileName, theTime);
-			String newFileWithComment = appendTimeStampWithComment(fileName, theTime, comment);
+			
 			System.out.println("newFile = " + newFile);
-			System.out.println("newFileWithComment = " + newFileWithComment);
 
 			String newFilePath = path + File.separator + newFile;
 			System.out.println("newFilePath = " + newFilePath);
 			
-			String newFilePathWithComment = path + File.separator + newFileWithComment;
-			System.out.println("newFilePathWithComment = " + newFilePathWithComment);
 
 			File src = new File(pathWithFileName);
-			File srcWithComment = new File (newFilePathWithComment);
 
 			newFilePath = newFilePath.replace("\\", "\\\\");
 			System.out.println("newFilePath = " + newFilePath);
 			
-			newFilePathWithComment = newFilePathWithComment.replace("\\", "\\\\");
-			System.out.println("newFilePathWithComment = " + newFilePathWithComment);
-
-			File dest = new File(newFilePath);
-			//dest.mkdirs();
-			dest.createNewFile();
-
-			copyFile(src, dest);
 			
-			PrintWriter out = new PrintWriter(newFilePathWithComment);
+
+			String newFilePathStripped = stripExtension(newFilePath);
+			
+			System.out.println("newFilePath (w/o extension) = " + newFilePathStripped);
+			
+			File dest = new File(newFilePathStripped);
+			dest.mkdirs();
+			
+			String newPath = newFilePathStripped + "\\" + newFile;
+			System.out.println("newPath: ");
+			System.out.println(newPath);
+			
+			File newDest = new File (newPath);
+			newDest.createNewFile();
+			
+			String newFileWithComment = appendTimeStampWithComment(fileName, theTime, comment);
+			//System.out.println("newFileWithComment = " + newFileWithComment);
+			//String newFilePathWithComment = path + File.separator + newFileWithComment;
+			//newFilePathWithComment = newFilePathWithComment.replace("\\", "\\\\");
+			//System.out.println("newFilePathWithComment = " + newFilePathWithComment);
+
+			newFilePathStripped = newFilePathStripped + File.separator + File.separator + newFileWithComment;
+			//newFilePathStripped = newFilePathStripped.replace("\\", "\\\\");
+			
+			System.out.println("new newFilePathStripped:");
+			System.out.println(newFilePathStripped);
+
+			copyFile(src, newDest);
+			
+			
+			
+			PrintWriter out = new PrintWriter(newFilePathStripped);
 			out.print(comment);
 			out.close();
 
