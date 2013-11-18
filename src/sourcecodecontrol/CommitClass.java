@@ -20,25 +20,19 @@ public class CommitClass {
 	 */
 	// function will add a timestamp to the end
 	// of the file with filename 'file'
-	public String appendTimeStamp(String file) {
+	public String appendTimeStamp(String file, String time) {
 		String extension = "";
-		Date date = new Date();
-		System.out.println(new Timestamp(date.getTime()));
-
-		// theTime contains the timestamp we want to append
-		// stored as a string
-		String theTime = date.toString();
 
 		// test output (delete after)
-		System.out.println(theTime);
+		System.out.println(time);
 
 		// replace all spaces with dashes
-		theTime = theTime.replace(' ', '-');
+		time = time.replace(' ', '-');
 
 		// replace all colons with dashes since
 		// filenames with colons are not allowed
 		// (this was the source of a frustrating bug)
-		theTime = theTime.replace(':', '-');
+		time = time.replace(':', '-');
 
 		// finds the extension of the input file
 		int k = file.lastIndexOf('.');
@@ -54,7 +48,43 @@ public class CommitClass {
 		file = file.replace(extension, "");
 
 		// append the timestamp followed by the extension
-		file = file + "-" + theTime + extension;
+		file = file + "-" + time + extension;
+
+		// test output (delete after)
+		System.out.println("new fileName = " + file);
+
+		return file;
+	}
+	
+	public String appendTimeStampWithComment(String file, String time, String comment) {
+		String extension = "";
+
+		// test output (delete after)
+		System.out.println(time);
+
+		// replace all spaces with dashes
+		time = time.replace(' ', '-');
+
+		// replace all colons with dashes since
+		// filenames with colons are not allowed
+		// (this was the source of a frustrating bug)
+		time = time.replace(':', '-');
+
+		// finds the extension of the input file
+		int k = file.lastIndexOf('.');
+		if (k > 0) {
+			extension = file.substring(k);
+		}
+
+		// test output (delete after)
+		System.out.println("The extension of " + file + " is " + extension);
+
+		// replace the extension of the filename with nothing so that
+		// we can append the timestamp before the extension
+		file = file.replace(extension, "");
+
+		// append the timestamp followed by the extension
+		file = file + "-" + time + "-comment" + extension;
 
 		// test output (delete after)
 		System.out.println("new fileName = " + file);
@@ -115,6 +145,7 @@ public class CommitClass {
 		String fileName;
 		String path;
 		String confirm;
+		String comment;
 
 		String pathWithFileName;
 
@@ -123,39 +154,68 @@ public class CommitClass {
 		System.out
 				.println("Enter the filepath of the file you wish to commit ");
 		System.out
-				.println("(without a slash at the end -- e.g. C:\\Users\\Bob or /Users/Bob):");
+				.println("[without a slash at the end -- e.g. C:\\Users\\Bob\\repo (Windows) or /Users/Bob/repo (Unix)]");
 		path = in.nextLine();
 
 		System.out.println("Enter the name of the file you wish to commit:");
 		fileName = in.nextLine();
-
+		
 		pathWithFileName = path + File.separator + fileName;
+		
+		File repoFolder = new File (pathWithFileName);
+		repoFolder.mkdirs();
 
 		System.out.println("\nThe file is: ");
 		System.out.println(pathWithFileName);
 
 		System.out.println("Is this correct? (y|n)");
 		confirm = in.nextLine();
+		
+		System.out.println("Enter a comment for this revision:");
+		comment = in.nextLine();
+		
+		System.out.println("Your comment is:");
+		System.out.println(comment);
+		
+		Date date = new Date();
+		System.out.println(new Timestamp(date.getTime()));
+
+		// theTime contains the timestamp we want to append
+		// stored as a string
+		String theTime = date.toString();
 
 		if (confirm.equalsIgnoreCase("y")) {
 			System.out.println("You said yes.");
 			// call the method that will append a timestamp to the filename
-			String newFile = appendTimeStamp(fileName);
+			String newFile = appendTimeStamp(fileName, theTime);
+			String newFileWithComment = appendTimeStampWithComment(fileName, theTime, comment);
 			System.out.println("newFile = " + newFile);
+			System.out.println("newFileWithComment = " + newFileWithComment);
 
 			String newFilePath = path + File.separator + newFile;
 			System.out.println("newFilePath = " + newFilePath);
+			
+			String newFilePathWithComment = path + File.separator + newFileWithComment;
+			System.out.println("newFilePathWithComment = " + newFilePathWithComment);
 
 			File src = new File(pathWithFileName);
+			File srcWithComment = new File (newFilePathWithComment);
 
 			newFilePath = newFilePath.replace("\\", "\\\\");
 			System.out.println("newFilePath = " + newFilePath);
+			
+			newFilePathWithComment = newFilePathWithComment.replace("\\", "\\\\");
+			System.out.println("newFilePathWithComment = " + newFilePathWithComment);
 
 			File dest = new File(newFilePath);
-			// dest1.mkdirs();
+			//dest.mkdirs();
 			dest.createNewFile();
 
 			copyFile(src, dest);
+			
+			PrintWriter out = new PrintWriter(newFilePathWithComment);
+			out.print(comment);
+			out.close();
 
 		} else if (confirm.equalsIgnoreCase("n")) {
 			System.out.println("You said no.");
