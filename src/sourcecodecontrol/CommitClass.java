@@ -45,6 +45,15 @@ public class CommitClass {
 		return file;
 	}
 	
+	/**
+	 * Copies contents of one file (src) to another (dest).
+	 * 'src' and 'dest' are File objects.
+	 * 'dest' must already exist prior to calling this method.
+	 * 
+	 * @param src complete filepath of source file
+	 * @param dest complete filepath of destination file (must already exist)
+	 * @throws IOException
+	 */
 	public static void copyFile(final File src, final File dest)
 			throws IOException {
 		copyInputStrToFile(new FileInputStream(src), dest);
