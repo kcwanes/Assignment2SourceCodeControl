@@ -1,4 +1,4 @@
-Simple Source Code Control (SCCC)
+Simple Source Code Control (SSCC)
 ============================
 
 Source Code Control Project for CSC444
