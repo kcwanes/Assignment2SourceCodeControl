@@ -9,8 +9,9 @@ import java.lang.String;
 import java.lang.Object;
 
 public class CommitClass {
-	// Comment to test commit from desktop
 
+	//function will add a timestamp to the end
+	//of the file with filename 'file'
 	public String appendTimeStamp(String file) {
 		String extension = "";
 		Date date = new Date();
