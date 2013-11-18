@@ -10,6 +10,13 @@ import java.lang.Object;
 
 public class CommitClass {
 
+	/**
+	 * Adds a timestamp string to the end of a filename
+	 * (but before the extension)
+	 * e.g. file.txt will become file-TIMESTAMP.txt
+	 * @param file contains the filename string that will be modified
+	 * @return the new filename complete with the timestamp
+	 */
 	//function will add a timestamp to the end
 	//of the file with filename 'file'
 	public String appendTimeStamp(String file) {
