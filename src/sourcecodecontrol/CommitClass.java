@@ -24,22 +24,38 @@ public class CommitClass {
 		Date date = new Date();
 		System.out.println(new Timestamp(date.getTime()));
 
+		//theTime contains the timestamp we want to append
+		//stored as a string
 		String theTime = date.toString();
 
+		//test output (delete after)
 		System.out.println(theTime);
-		theTime = theTime.replace(' ', '-');
-		theTime = theTime.replace(':', '-');
-		int k = file.lastIndexOf('.');
 		
+		//replace all spaces with dashes
+		theTime = theTime.replace(' ', '-');
+		
+		//replace all colons with dashes since
+		//filenames with colons are not allowed
+		//(this was the source of a frustrating bug)
+		theTime = theTime.replace(':', '-');
+		
+		//finds the extension of the input file
+		int k = file.lastIndexOf('.');
 		if (k > 0) {
 			extension = file.substring(k);
 		}
 
+		//test output (delete after)
 		System.out.println("The extension of " + file + " is " + extension);
 		
+		//replace the extension of the filename with nothing so that
+		//we can append the timestamp before the extension
 		file = file.replace(extension, "");
+		
+		//append the timestamp followed by the extension
 		file = file + "-" + theTime + extension;
 		
+		//test output (delete after)
 		System.out.println("new fileName = " + file);
 		
 		return file;
@@ -49,7 +65,7 @@ public class CommitClass {
 	 * Copies contents of one file (src) to another (dest).
 	 * 'src' and 'dest' are File objects.
 	 * 'dest' must already exist prior to calling this method.
-	 * 
+	 * Treat as blackbox.
 	 * @param src complete filepath of source file
 	 * @param dest complete filepath of destination file (must already exist)
 	 * @throws IOException
@@ -81,6 +97,20 @@ public class CommitClass {
 		}
 	}
 
+	/**
+	 * Main method for the commit feature
+	 * Currently gets the filepath and filename
+	 * of the file the user wishes to commit (may change
+	 * this such that the main Java file of the project gets
+	 * this user input).
+	 * 
+	 * Will create a copy of the user specified txt file
+	 * and store it in the same folder with a timestamp
+	 * appended to the filename
+	 * 
+	 * @throws IOException
+	 */
+	
 	public void commitMethod() throws IOException {
 		String fileName;
 		String path;
@@ -107,9 +137,7 @@ public class CommitClass {
 
 		if (confirm.equalsIgnoreCase("y")) {
 			System.out.println("You said yes.");
-
-
-
+			//call the method that will append a timestamp to the filename
 			String newFile = appendTimeStamp(fileName);
 			System.out.println("newFile = " + newFile);
 			
