@@ -11,8 +11,16 @@ import java.lang.Object;
 public class CommitClass {
 	// Comment to test commit from desktop
 
-	public String appendTimeStamp(String file, String time) {
+	public String appendTimeStamp(String file) {
 		String extension = "";
+		Date date = new Date();
+		System.out.println(new Timestamp(date.getTime()));
+
+		String theTime = date.toString();
+
+		System.out.println(theTime);
+		theTime = theTime.replace(' ', '-');
+		theTime = theTime.replace(':', '-');
 		int k = file.lastIndexOf('.');
 		
 		if (k > 0) {
@@ -22,7 +30,7 @@ public class CommitClass {
 		System.out.println("The extension of " + file + " is " + extension);
 		
 		file = file.replace(extension, "");
-		file = file + "-" + time + extension;
+		file = file + "-" + theTime + extension;
 		
 		System.out.println("new fileName = " + file);
 		
@@ -83,16 +91,9 @@ public class CommitClass {
 		if (confirm.equalsIgnoreCase("y")) {
 			System.out.println("You said yes.");
 
-			Date date = new Date();
-			System.out.println(new Timestamp(date.getTime()));
 
-			String theTime = date.toString();
 
-			System.out.println(theTime);
-			theTime = theTime.replace(' ', '-');
-			theTime = theTime.replace(':', '-');
-
-			String newFile = appendTimeStamp(fileName, theTime);
+			String newFile = appendTimeStamp(fileName);
 			System.out.println("newFile = " + newFile);
 			
 			String newFilePath = path + File.separator + newFile;
