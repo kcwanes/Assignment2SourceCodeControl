@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.lang.String;
 
 
+
 /**
  *
  * @author Khatchadour Wanes
@@ -22,55 +23,53 @@ public class SourceCodeControl {
         System.out.print("What Is Thy Bidding? ");
         do{
             B = uIS.next();
-            EchoString(B);       
+            Helper.EchoString(B);       
         }while(ProcessCommand(B) == 0);
     }
     
-    public static int EchoString(String string){
-        System.out.print(string + '\n');
-        return 0;
-    }
-    
+ 
     public static int ProcessCommand(String cmd) throws IOException{
         if (cmd.equalsIgnoreCase("Checkout"))
         {
-            EchoString("Starting Checkout...");
-            return EchoString("You Have Checked Out Your Files.");
+            Helper.EchoString("Starting Checkout...");
+            CheckoutClass checkout = new CheckoutClass();
+            checkout.checkoutMethod();
+            return Helper.EchoString("You Have Checked Out Your Files.");
         }
         else if (cmd.equalsIgnoreCase("Commit"))
         {
-            EchoString("Starting Commit...");
+        	Helper.EchoString("Starting Commit...");
             CommitClass commit = new CommitClass();
             commit.commitMethod();
-            return EchoString("You Have Committed Your Files.");
+            return Helper.EchoString("You Have Committed Your Files.");
         }
         else if (cmd.equalsIgnoreCase("Revert"))
         {
-            EchoString("Starting Revert...");
-            return EchoString("You Have Reverted Your Files.");
+        	Helper.EchoString("Starting Revert...");
+            return Helper.EchoString("You Have Reverted Your Files.");
         }
         else if (cmd.equalsIgnoreCase("Merge"))
         {
-            EchoString("Starting Merge...");
-            return EchoString("You Have Merged Your Files.");
+        	Helper.EchoString("Starting Merge...");
+            return Helper.EchoString("You Have Merged Your Files.");
         }
         else if (cmd.equalsIgnoreCase("Branch"))
         {
-            EchoString("Starting Branch...");
-            return EchoString("You Have Branched Your Source Code.");
+        	Helper.EchoString("Starting Branch...");
+            return Helper.EchoString("You Have Branched Your Source Code.");
         }
         else if (cmd.equalsIgnoreCase("Delete"))
         {
-            return EchoString("You Have Deleted Your Files.");
+            return Helper.EchoString("You Have Deleted Your Files.");
         }
         else if (cmd.equalsIgnoreCase("Exit")) 
         {
-            EchoString("You Wish To Leave Me; Goodbye!");
+        	Helper.EchoString("You Wish To Leave Me; Goodbye!");
             return 1;
         }
         
         else{
-        	return EchoString("Please Input A Valid Command!");
+        	return Helper.EchoString("Please Input A Valid Command!");
         }
     }
 }
