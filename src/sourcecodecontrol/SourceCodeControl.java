@@ -34,33 +34,40 @@ public class SourceCodeControl {
             Helper.EchoString("Starting Checkout...");
             CheckoutClass checkout = new CheckoutClass();
             checkout.checkoutMethod();
-            return Helper.EchoString("You Have Checked Out Your Files.");
+            Helper.EchoString("You Have Checked Out Your Files.");
+            return Helper.EchoString("Please input another command.");
+           
         }
         else if (cmd.equalsIgnoreCase("Commit"))
         {
         	Helper.EchoString("Starting Commit...");
             CommitClass commit = new CommitClass();
             commit.commitMethod();
-            return Helper.EchoString("You Have Committed Your Files.");
+            Helper.EchoString("You Have Committed Your Files.");
+            return Helper.EchoString("Please input another command.");
         }
         else if (cmd.equalsIgnoreCase("Revert"))
         {
         	Helper.EchoString("Starting Revert...");
-            return Helper.EchoString("You Have Reverted Your Files.");
+            Helper.EchoString("You Have Reverted Your Files.");
+            return Helper.EchoString("Please input another command.");
         }
         else if (cmd.equalsIgnoreCase("Merge"))
         {
         	Helper.EchoString("Starting Merge...");
-            return Helper.EchoString("You Have Merged Your Files.");
+            Helper.EchoString("You Have Merged Your Files.");
+            return Helper.EchoString("Please input another command.");
         }
         else if (cmd.equalsIgnoreCase("Branch"))
         {
         	Helper.EchoString("Starting Branch...");
-            return Helper.EchoString("You Have Branched Your Source Code.");
+            Helper.EchoString("You Have Branched Your Source Code.");
+            return Helper.EchoString("Please input another command.");
         }
         else if (cmd.equalsIgnoreCase("Delete"))
         {
-            return Helper.EchoString("You Have Deleted Your Files.");
+            Helper.EchoString("You Have Deleted Your Files.");
+            return Helper.EchoString("Please input another command.");
         }
         else if (cmd.equalsIgnoreCase("Exit")) 
         {

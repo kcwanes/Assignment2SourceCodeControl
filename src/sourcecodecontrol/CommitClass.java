@@ -125,9 +125,7 @@ public class CommitClass {
 			// allow user to re-enter filename
 
 		}
-		// }
-
-		System.out.println("You have hit 'exit'.");
+		
 
 	}
 }
