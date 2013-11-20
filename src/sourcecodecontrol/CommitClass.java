@@ -64,7 +64,7 @@ public class CommitClass {
 		String theTime = date.toString();
 
 		if (confirm == true) {
-			System.out.println("You said yes.");
+			
 			// call the method that will append a timestamp to the filename
 			String newFile = Helper.appendTimeStamp(fileName, theTime);
 			
@@ -121,7 +121,7 @@ public class CommitClass {
 			out.close();
 
 		} else if (confirm == false) {
-			System.out.println("You said no.");
+			
 			// allow user to re-enter filename
 
 		}

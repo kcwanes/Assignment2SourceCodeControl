@@ -170,14 +170,21 @@ public class Helper {
     	System.out.print(message);
     	String result = scanner.nextLine();
     	if (result.equalsIgnoreCase("yes") || result.equalsIgnoreCase("y")){
+    		System.out.println("You said yes.");
     		return true;
     	}
     	else if (result.equalsIgnoreCase("no") || result.equalsIgnoreCase("no")){
+    		System.out.println("You said no.");
     		return false;
     	}
     	else{
     	return false;
     	}
+    }
+    
+    public static String convertTimeToNumber(){
+    }
+    
     }
 }
 
