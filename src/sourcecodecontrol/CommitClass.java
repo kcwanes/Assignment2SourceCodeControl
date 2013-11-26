@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Scanner;
 import java.lang.String;
 import java.lang.Object;
+import java.text.SimpleDateFormat;
 
 public class CommitClass {
 
@@ -57,11 +58,15 @@ public class CommitClass {
 		System.out.println(comment);
 		
 		Date date = new Date();
-		System.out.println(new Timestamp(date.getTime()));
+		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd-HH-mm-ss");
+		String theTime = sdf.format(date);
+		
+		System.out.println(theTime);
+		//String theTime = date.toString();
+		//System.out.println(theTime);
 
 		// theTime contains the timestamp we want to append
 		// stored as a string
-		String theTime = date.toString();
 
 		if (confirm == true) {
 			

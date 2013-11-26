@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
 
 public class Helper {
 	/**
@@ -60,7 +61,7 @@ public class Helper {
 		String strippedFile = stripExtension(file);
 		String extension = getExtension(file);
 		String newFile;
-
+/*
 		// test output (delete after)
 		System.out.println(time);
 
@@ -71,14 +72,14 @@ public class Helper {
 		// filenames with colons are not allowed
 		// (this was the source of a frustrating bug)
 		time = time.replace(':', '-');
-
+		*/
 		//String extension = removeExtension(file);
 
 		// append the timestamp followed by the extension
 		newFile = strippedFile + "-" + time + extension;
 
 		// test output (delete after)
-		System.out.println("BLAH new fileName = " + newFile);
+		System.out.println("Your file is now called = " + newFile);
 
 		return newFile;
 	}
@@ -182,10 +183,7 @@ public class Helper {
     	}
     }
     
-    public static String convertTimeToNumber(){
     }
-    
-    }
-}
+
 
 
