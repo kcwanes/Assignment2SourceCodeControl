@@ -18,7 +18,7 @@ public class SourceCodeControl {
     public static void main(String[] args) throws Exception {
         Scanner uIS = new Scanner(System.in);
         String B = "";
-        System.out.println("[Commit | Checkout | Revert | Merge | Branch | Delete | Exit]");
+        System.out.println("[Commit | Checkout | GetHistory | Merge | Branch | Delete | Exit]");
         System.out.print("What Is Thy Bidding? ");
         do{
             B = uIS.next();
@@ -45,11 +45,10 @@ public class SourceCodeControl {
             Helper.EchoString("You Have Committed Your Files.");
             return Helper.EchoString("Please input another command.");
         }
-        else if (cmd.equalsIgnoreCase("Revert"))
+        else if (cmd.equalsIgnoreCase("GetHistory"))
         {
-        	Helper.EchoString("Starting Revert...");
-            Helper.EchoString("You Have Reverted Your Files.");
-            return Helper.EchoString("Please input another command.");
+        	Helper.EchoString("You have requested a history.");
+        	return Helper.EchoString("Please input another command.");
         }
         else if (cmd.equalsIgnoreCase("Merge"))
         {
