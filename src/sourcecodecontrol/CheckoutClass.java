@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 public class CheckoutClass {
 	
-	public void checkoutMethod() throws IOException {
+	public void checkoutMethod() 
+			throws Exception {
 		String fileName;
-		String path;
+		String[] path = new String[2];
 		Boolean confirm;
 		
-		String pathWithFileName;
 		String version;
 		int v;
 		Boolean specVersion;
@@ -27,16 +27,16 @@ public class CheckoutClass {
 				System.out.print("Which version would you like to checkout?");
 				version = in.nextLine();
 				v = Integer.parseInt(version);
-				path = Helper.getPathToFileVersion(fileName, v);
-				File f = new File(path);
-				System.out.println("I found the file");
+				path = Helper.getPathToFileVersion(fileName + ".txt", v);
+				Helper.printFileToTerminal(path[0]);
+				Helper.printFileToTerminal(path[1]);
 				
 			}
 			else if(!specVersion){
 				v = Helper.countFileVersions(fileName);
-				path = Helper.getPathToFileVersion(fileName, v);
-				File f = new File(path);
-				System.out.println("I found the latest version of file: " + fileName);
+				path = Helper.getPathToFileVersion(fileName + ".txt", v);
+				Helper.printFileToTerminal(path[0]);
+				Helper.printFileToTerminal(path[1]);
 			}
 
 			confirm = Helper.Confirm("Is this correct? (y|n)");

@@ -1,13 +1,8 @@
 package sourcecodecontrol;
 
 import java.io.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.Scanner;
 
 
@@ -206,24 +201,44 @@ public class Helper {
     	return count;	
     }
     
-    public static String getPathToFileVersion(String file, int version){
+    @SuppressWarnings("null")
+	public static String[] getPathToFileVersion(String file, int version){
     	String filePath = RepoPath + File.separator + stripExtension(file);
+    	String[] results = new String[2];
     	File dir = new File(filePath);
     	int count = 0;
     	for (File f : dir.listFiles()){
     		if(f.isDirectory()){
     			count++;
     			if (count == version){
-    				return f.getPath();
+    				results[0] = f.getPath() + File.separator + file;
+    				results[1] = f.getPath() + File.separator + "Comment.txt";
     			}
     			
     		}
     	}
-    	if (count < version){
-    		System.out.println("This version number does not Exist");
+    	return results;
+    }
+    
+    
+    @SuppressWarnings("finally")
+	public static int printFileToTerminal(String path) 
+			throws Exception{
+    	FileInputStream input = new FileInputStream(path);
+    	FileChannel channel = input.getChannel();
+    	byte[] buffer = new byte[256 * 1024];
+    	ByteBuffer byteBuffer = ByteBuffer.wrap(buffer);
+
+    	try {
+    	    for (int length = 0; (length = channel.read(byteBuffer)) != -1;) {
+    	        System.out.write(buffer, 0, length);
+    	        System.out.print('\n');
+    	        byteBuffer.clear();
+    	    }
+    	} finally {
+    	    input.close();
+    	    return 0;
     	}
-    	
-    	return "Something Went Wrong";
     }
     
 }

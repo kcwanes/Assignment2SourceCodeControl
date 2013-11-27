@@ -14,9 +14,9 @@ public class SourceCodeControl {
 	
     /**
      * @param args the command line arguments
-     * @throws IOException 
+     * @throws Exception 
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         Scanner uIS = new Scanner(System.in);
         String B = "";
         System.out.println("[Commit | Checkout | Revert | Merge | Branch | Delete | Exit]");
@@ -28,7 +28,7 @@ public class SourceCodeControl {
     }
     
  
-    public static int ProcessCommand(String cmd) throws IOException{
+    public static int ProcessCommand(String cmd) throws Exception{
         if (cmd.equalsIgnoreCase("Checkout"))
         {
             Helper.EchoString("Starting Checkout...");
