@@ -9,21 +9,38 @@ public class CheckoutClass {
 	public void checkoutMethod() throws IOException {
 		String fileName;
 		String path;
-		String confirm;
+		Boolean confirm;
+		
 		String pathWithFileName;
+		String version;
+		int v;
+		Boolean specVersion;
 		
 		Scanner in = new Scanner(System.in);
 
-		System.out
-				.println("Enter the filepath of the file you wish to checkout ");
-		System.out
-				.println("[without a slash at the end -- e.g. C:\\Users\\Bob\\repo (Windows) or /Users/Bob/repo (Unix)]");
-		path = in.nextLine();
+		do{
+			System.out.println("Enter the name of the file you wish to checkout:");
+			fileName = in.nextLine();
 
-		System.out.println("Enter the name of the file you wish to commit:");
-		fileName = in.nextLine();
-		
-		pathWithFileName = path + File.separator + fileName;
+			specVersion = Helper.Confirm("Would you like to checkout a specific version of this file? (y|n)");
+			if (specVersion){ 
+				System.out.print("Which version would you like to checkout?");
+				version = in.nextLine();
+				v = Integer.parseInt(version);
+				path = Helper.getPathToFileVersion(fileName, v);
+				File f = new File(path);
+				System.out.println("I found the file");
+				
+			}
+			else if(!specVersion){
+				v = Helper.countFileVersions(fileName);
+				path = Helper.getPathToFileVersion(fileName, v);
+				File f = new File(path);
+				System.out.println("I found the latest version of file: " + fileName);
+			}
+
+			confirm = Helper.Confirm("Is this correct? (y|n)");
+		}while(confirm != true);
 	
 	
 	

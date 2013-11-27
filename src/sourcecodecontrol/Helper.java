@@ -1,7 +1,6 @@
 package sourcecodecontrol;
 
 import java.io.*;
-import java.nio.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,8 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Scanner;
-import java.text.SimpleDateFormat;
-import java.lang.Object;
+
 
 public class Helper {
 	/**
@@ -20,6 +18,7 @@ public class Helper {
 	 * @return the extension as a string
 	 */
 
+	public static String RepoPath = "/Users/kcwanes/Programming/Repo";
 	public static String getExtension (String file){
 		// finds the extension of the input file
 		String extension = "";
@@ -195,7 +194,39 @@ public class Helper {
 		return true;
     }
     
+    public static int countFileVersions(String file){
+    	String filePath = RepoPath + File.separator + stripExtension(file);
+    	int count = 0;
+    	File dir = new File(filePath);
+    	for (File f : dir.listFiles()){
+    		if (f.isDirectory()){
+    			count++;
+    		}
+    	}
+    	return count;	
     }
+    
+    public static String getPathToFileVersion(String file, int version){
+    	String filePath = RepoPath + File.separator + stripExtension(file);
+    	File dir = new File(filePath);
+    	int count = 0;
+    	for (File f : dir.listFiles()){
+    		if(f.isDirectory()){
+    			count++;
+    			if (count == version){
+    				return f.getPath();
+    			}
+    			
+    		}
+    	}
+    	if (count < version){
+    		System.out.println("This version number does not Exist");
+    	}
+    	
+    	return "Something Went Wrong";
+    }
+    
+}
 
 
 

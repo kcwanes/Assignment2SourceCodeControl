@@ -1,12 +1,9 @@
 package sourcecodecontrol;
 
 import java.io.*;
-import java.nio.*;
-import java.sql.*;
 import java.util.Date;
 import java.util.Scanner;
 import java.lang.String;
-import java.lang.Object;
 import java.text.SimpleDateFormat;
 
 public class CommitClass {
@@ -30,7 +27,6 @@ public class CommitClass {
 		String theTime;
 		String pathWithFileName;
 		String newCommentPath;
-		String newFilePath;
 		String newDir;
 		String newPath;
 
@@ -65,12 +61,9 @@ public class CommitClass {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd-HH-mm-ss");
 		theTime = sdf.format(date);
-		
-		// theTime contains the timestamp for this Commit operation
-		// stored as a string
-		
 
-		newDir = path + File.separator + Helper.stripExtension(fileName) + File.separator + theTime;
+
+		newDir = Helper.RepoPath + File.separator + Helper.stripExtension(fileName) + File.separator + theTime;
 		System.out.println("newFilePath = " + newDir);
 		
 		File src = new File(path + File.separator + fileName);
@@ -83,9 +76,6 @@ public class CommitClass {
 		newPath = newPath.replace("\\", "\\\\");
 		newCommentPath = newCommentPath.replace("\\", "\\\\");		
 		
-		System.out.println("newPath: ");
-		System.out.println(newPath);
-		
 		File directory = new File(newDir);
 		File newDest = new File (newPath);
 		File newCmt = new File(newCommentPath);
@@ -93,13 +83,7 @@ public class CommitClass {
 		directory.mkdirs();
 		newDest.createNewFile();
 		newCmt.createNewFile();
-		
-		//String newFileWithComment = Helper.appendTimeStampWithComment(fileName, theTime, comment);
-		//System.out.println("newFileWithComment = " + newFileWithComment);
-		//String newFilePathWithComment = path + File.separator + newFileWithComment;
-		//newFilePathWithComment = newFilePathWithComment.replace("\\", "\\\\");
-		//System.out.println("newFilePathWithComment = " + newFilePathWithComment);
-		
+	
 		Helper.copyIntoFile(src, newDest);
 		Helper.printStringToFile(newCmt, theTime + '\n' + comment);
 
