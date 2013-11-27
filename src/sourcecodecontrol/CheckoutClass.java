@@ -20,7 +20,8 @@ public class CheckoutClass {
 			System.out.println("Enter the name of the file you wish to checkout (without the file extension):");
 			fileName = in.nextLine();
 
-			specVersion = Helper.Confirm("Would you like to checkout a specific version of this file? (y|n)");
+			specVersion = Helper.Confirm("Would you like to checkout a specific version of this file? " +
+					"Selecting 'no' means receiving the latest version. (y|n)");
 			if (specVersion){ 
 				System.out.print("Which version would you like to checkout?");
 				version = in.nextLine();
