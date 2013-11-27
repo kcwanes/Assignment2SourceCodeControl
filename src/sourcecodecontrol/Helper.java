@@ -1,13 +1,17 @@
 package sourcecodecontrol;
 
+import java.io.*;
+import java.nio.*;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
+import java.lang.Object;
 
 public class Helper {
 	/**
@@ -96,7 +100,7 @@ public class Helper {
 	 *            complete filepath of destination file (must already exist)
 	 * @throws IOException
 	 */
-	public static void copyFile(final File src, final File dest)
+	public static void copyIntoFile(final File src, final File dest)
 			throws IOException {
 		copyInputStrToFile(new FileInputStream(src), dest);
 		dest.setLastModified(src.lastModified());
@@ -181,6 +185,14 @@ public class Helper {
     	else{
     	return false;
     	}
+    }
+   
+    public static boolean printStringToFile(File file, String string) 
+    		throws FileNotFoundException{
+    	PrintWriter out = new PrintWriter(file);
+		out.print(string);
+		out.close();
+		return true;
     }
     
     }
