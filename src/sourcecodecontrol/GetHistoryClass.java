@@ -13,7 +13,7 @@ public class GetHistoryClass {
 		Boolean confirm;
 		Scanner in = new Scanner(System.in);
 		do{
-			System.out.println("Enter the name of the file you wish to commit:");
+			System.out.println("Enter the name of the file you wish to commit (with the file extension):");
 			fileName = in.nextLine();
 			System.out.print(fileName);
 			confirm = Helper.Confirm("Is this correct? (y|n)");
