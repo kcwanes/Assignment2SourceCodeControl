@@ -201,7 +201,6 @@ public class Helper {
     	return count;	
     }
     
-    @SuppressWarnings("null")
 	public static String[] getPathToFileVersion(String file, int version){
     	String filePath = RepoPath + File.separator + stripExtension(file);
     	String[] results = new String[2];
