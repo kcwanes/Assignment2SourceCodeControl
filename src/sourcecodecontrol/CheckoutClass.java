@@ -17,7 +17,7 @@ public class CheckoutClass {
 		Scanner in = new Scanner(System.in);
 
 		do{
-			System.out.println("Enter the name of the file you wish to checkout:");
+			System.out.println("Enter the name of the file you wish to checkout (without the file extension):");
 			fileName = in.nextLine();
 
 			specVersion = Helper.Confirm("Would you like to checkout a specific version of this file? (y|n)");
