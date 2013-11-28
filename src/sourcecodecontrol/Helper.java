@@ -229,13 +229,15 @@ public class Helper {
      * file along with the path for its comment
      * @param file the file we are seeking the path for, as a String
      * @param version revision number as an int
-     * @return an array of 2 strings that contain the path of the file and
-     * the path of that file's comment, respectively
+     * @return an array of 4 strings that contain the absolute path of the file and
+     * the path of that file's comment (the first 2 strings) and also the relative file path
+     * of the file and that file's comment (the last 2 strings)
+     * @throws IOException 
      */
     
-	public static String[] getPathToFileVersion(String file, int version){
+	public static String[] getPathToFileVersion(String file, int version) throws IOException{
     	String filePath = RepoPath + File.separator + stripExtension(file) + File.separator + "main";
-    	String[] results = new String[2];
+    	String[] results = new String[4];
     	File dir = new File(filePath);
     	int count = 0;
     	for (File f : dir.listFiles()){
@@ -244,6 +246,8 @@ public class Helper {
     			if (count == version){
     				results[0] = f.getPath() + File.separator + file;
     				results[1] = f.getPath() + File.separator + "comment.txt";
+    				results[2] = f.getName() + File.separator + file;;
+    				results[3] = f.getName() + File.separator + "comment.txt";
     			}
     			
     		}

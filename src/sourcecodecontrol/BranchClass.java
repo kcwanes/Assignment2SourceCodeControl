@@ -7,14 +7,14 @@ import java.lang.String;
 import java.text.SimpleDateFormat;
 
 public class BranchClass {
-	public void makeBranch(){
+	public void makeBranch() throws IOException{
 		
 		String fileName;
 		String newBranch;
 		Boolean confirm;
 		Scanner in = new Scanner(System.in);
 		do{
-			System.out.println("Enter the name of the file under source code control:");
+			System.out.println("Enter the name of the file under source code control (with the file extension):");
 			fileName = in.nextLine();
 			System.out.print(fileName);
 			confirm = Helper.Confirm("\nIs this correct? (y|n)");
@@ -32,7 +32,28 @@ public class BranchClass {
 			System.out.println("The source main branch file path is:");
 			System.out.println(sourceMainBranch);
 			
-			//Helper.countFileVersions(sourceMainBranch);
+			int fileVersions = Helper.countFileVersions(fileName);
+			System.out.println(fileVersions);
+			
+			String[] path = new String[2];
+			
+			path = Helper.getPathToFileVersion(fileName, fileVersions);
+			
+			System.out.println("path[0] = " + path[0]);
+			System.out.println("path[1] = " + path[1]);
+			System.out.println("path[2] = " + path[2]);
+			System.out.println("path[3] = " + path[3]);
+			
+			String theNewBranchFilePath = newBranchFilePath + File.separator + path[2];
+			String newBranchFilePathWithComment = newBranchFilePath + File.separator + path[3];
+			
+			System.out.println("The new NEW branch file path is:");
+			System.out.println(theNewBranchFilePath);
+
+			System.out.println("The new branch file path, with comment, is:");
+			System.out.println(newBranchFilePathWithComment);
+			
+			
 		}while(confirm != true);
 	}
 
