@@ -31,76 +31,83 @@ public class CommitClass {
 		String newPath;
 
 		Scanner in = new Scanner(System.in);
-		
-		do{
-	
-			System.out.println("Enter the filepath of the file you wish to commit ");
+
+		do {
+
+			System.out
+					.println("Enter the filepath of the file you wish to commit ");
 			System.out
 					.println("[without a slash at the end -- e.g. C:\\Users\\Bob\\repo (Windows) or /Users/Bob/repo (Unix)]");
 			path = in.nextLine();
-	
-			System.out.println("Enter the name of the file you wish to commit (with file extension):");
+
+			System.out
+					.println("Enter the name of the file you wish to commit (with file extension):");
 			fileName = in.nextLine();
-			
-			System.out.println("Enter the branch you want to commit to ('main' is the default):");
+
+			System.out
+					.println("Enter the branch you want to commit to ('main' is the default):");
 			branch = in.nextLine();
-			
+
 			pathWithFileName = path + File.separator + fileName;
-			String branchFilePath = Helper.RepoPath + File.separator + Helper.stripExtension(fileName) + File.separator + branch;
-			
+			String branchFilePath = Helper.RepoPath + File.separator
+					+ Helper.stripExtension(fileName) + File.separator + branch;
+
 			System.out.println("The branch file path is:");
 			System.out.println(branchFilePath);
-		
+
 			File branchPath = new File(branchFilePath);
-			
-			
-			//If the user tried to commit to a non-existent branch, quit the program.
-			//Exception: If they are trying to commit to 'main' and it doesnt already exist,
-			//create the 'main' branch.
-			//User must 'branch' to commit to another branch that is not 'main'
-			if (branchPath.exists() == false && !branch.equals("main"))
-			{
+
+			// If the user tried to commit to a non-existent branch, quit the
+			// program.
+			// Exception: If they are trying to commit to 'main' and it doesnt
+			// already exist,
+			// create the 'main' branch.
+			// User must 'branch' to commit to another branch that is not 'main'
+			if (branchPath.exists() == false && !branch.equals("main")) {
 				System.out.println("Branch '" + branch + "' does not exist.");
-				System.out.println("Please use the command 'branch' before commiting to a non-existent branch.");
+				System.out
+						.println("Please use the command 'branch' before commiting to a non-existent branch.");
 				System.out.println("Program quitting.");
 				System.exit(1);
 			}
-			
-			//File repoFolder = new File (pathWithFileName);
-			//repoFolder.mkdirs();
-	
+
+			// File repoFolder = new File (pathWithFileName);
+			// repoFolder.mkdirs();
+
 			System.out.println("\nThe file is: ");
 			System.out.println(pathWithFileName);
-		}while(Helper.Confirm("Is this correct? (y|n)") != true);
-	
+		} while (Helper.Confirm("Is this correct? (y|n)") != true);
+
 		System.out.println("Enter a comment for this revision:");
 		comment = in.nextLine();
-		
+
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd-HH-mm-ss");
 		theTime = sdf.format(date);
 
-		//simplify this
-		newDir = Helper.RepoPath + File.separator + Helper.stripExtension(fileName) + File.separator + branch + File.separator + theTime;
-		
+		// simplify this
+		newDir = Helper.RepoPath + File.separator
+				+ Helper.stripExtension(fileName) + File.separator + branch
+				+ File.separator + theTime;
+
 		File src = new File(path + File.separator + fileName);
 
 		newDir = newDir.replace("\\", "\\\\");
-		
+
 		newPath = newDir + File.separator + fileName;
 		newCommentPath = newDir + File.separator + "comment.txt";
-		
+
 		newPath = newPath.replace("\\", "\\\\");
-		newCommentPath = newCommentPath.replace("\\", "\\\\");		
-		
+		newCommentPath = newCommentPath.replace("\\", "\\\\");
+
 		File directory = new File(newDir);
-		File newDest = new File (newPath);
+		File newDest = new File(newPath);
 		File newCmt = new File(newCommentPath);
 
 		directory.mkdirs();
 		newDest.createNewFile();
 		newCmt.createNewFile();
-	
+
 		Helper.copyIntoFile(src, newDest);
 		Helper.printStringToFile(newCmt, theTime + '\n' + comment);
 
