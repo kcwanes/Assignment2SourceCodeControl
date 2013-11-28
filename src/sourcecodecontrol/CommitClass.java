@@ -39,7 +39,7 @@ public class CommitClass {
 					.println("[without a slash at the end -- e.g. C:\\Users\\Bob\\repo (Windows) or /Users/Bob/repo (Unix)]");
 			path = in.nextLine();
 	
-			System.out.println("Enter the name of the file you wish to commit:");
+			System.out.println("Enter the name of the file you wish to commit (with file extension):");
 			fileName = in.nextLine();
 			
 			System.out.println("Enter the branch you want to commit to ('main' is the default):");
@@ -58,7 +58,7 @@ public class CommitClass {
 			//Exception: If they are trying to commit to 'main' and it doesnt already exist,
 			//create the 'main' branch.
 			//User must 'branch' to commit to another branch that is not 'main'
-			if (branchPath.exists() == false && branch != "main")
+			if (branchPath.exists() == false && !branch.equals("main"))
 			{
 				System.out.println("Branch '" + branch + "' does not exist.");
 				System.out.println("Please use the command 'branch' before commiting to a non-existent branch.");

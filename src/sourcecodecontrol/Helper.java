@@ -18,7 +18,8 @@ public class Helper {
 	 * @return the extension as a string
 	 */
 
-	public static String RepoPath = "/Users/kcwanes/Programming/Repo";
+	//public static String RepoPath = "/Users/kcwanes/Programming/Repo";
+	public static String RepoPath = "/Users/vuk/Desktop/repo";
 	//public static String RepoPath = "C:\\Users\\Vuk\\Desktop\\repo";
 	
 	public static String getExtension (String file){
@@ -179,7 +180,7 @@ public class Helper {
     
     public static boolean Confirm(String message){
     	Scanner scanner = new Scanner(System.in);
-    	System.out.print(message);
+    	System.out.println(message);
     	String result = scanner.nextLine();
     	if (result.equalsIgnoreCase("yes") || result.equalsIgnoreCase("y")){
     		return true;
