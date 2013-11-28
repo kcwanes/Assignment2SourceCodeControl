@@ -13,7 +13,8 @@ public class Helper {
 	 * @return the extension as a string
 	 */
 
-	public static String RepoPath = "/Users/kcwanes/Programming/Repo";
+	//public static String RepoPath = "/Users/kcwanes/Programming/Repo";
+	public static String RepoPath = "C:\\Users\\Vuk\\Desktop\\repo";
 	public static String getExtension (String file){
 		// finds the extension of the input file
 		String extension = "";
@@ -163,6 +164,12 @@ public class Helper {
 		file = file + "-" + time + "-comment" + extension;
 		return file;
 	}
+    
+    /**
+     * Confirm method
+     * @param message The message that the user is asked to confirm
+     * @return True if 'yes' or 'y', False if 'no' or 'n'
+     */
     
     public static boolean Confirm(String message){
     	Scanner scanner = new Scanner(System.in);
