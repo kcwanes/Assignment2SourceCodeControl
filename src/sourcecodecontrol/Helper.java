@@ -236,7 +236,8 @@ public class Helper {
      * @param version revision number as an int
      * @return an array of 4 strings that contain the absolute path of the file and
      * the path of that file's comment (the first 2 strings) and also the relative file path
-     * of the file and that file's comment (the last 2 strings)
+     * of the file and that file's comment (the last 2 strings). The last string in the array
+     * contains just the timestamp string from the folder (without an extension or comment suffix)
      * @throws IOException 
      */
     
