@@ -237,7 +237,7 @@ public class Helper {
     
 	public static String[] getPathToFileVersion(String file, int version) throws IOException{
     	String filePath = RepoPath + File.separator + stripExtension(file) + File.separator + "main";
-    	String[] results = new String[4];
+    	String[] results = new String[5];
     	File dir = new File(filePath);
     	int count = 0;
     	for (File f : dir.listFiles()){
@@ -246,8 +246,9 @@ public class Helper {
     			if (count == version){
     				results[0] = f.getPath() + File.separator + file;
     				results[1] = f.getPath() + File.separator + "comment.txt";
-    				results[2] = f.getName() + File.separator + file;;
+    				results[2] = f.getName() + File.separator + file;
     				results[3] = f.getName() + File.separator + "comment.txt";
+    				results[4] = f.getName();
     			}
     			
     		}

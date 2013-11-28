@@ -43,6 +43,7 @@ public class BranchClass {
 			System.out.println("path[1] = " + path[1]);
 			System.out.println("path[2] = " + path[2]);
 			System.out.println("path[3] = " + path[3]);
+			System.out.println("path[4] = " + path[4]);
 			
 			String theNewBranchFilePath = newBranchFilePath + File.separator + path[2];
 			String newBranchFilePathWithComment = newBranchFilePath + File.separator + path[3];
@@ -53,6 +54,25 @@ public class BranchClass {
 			System.out.println("The new branch file path, with comment, is:");
 			System.out.println(newBranchFilePathWithComment);
 			
+			File src = new File(path[0]);
+			File srcComment = new File(path[1]);
+			
+			newBranchFilePath = newBranchFilePath + File.separator + path[4];
+			
+			File dest = new File(newBranchFilePath);
+			File destComment = new File(newBranchFilePathWithComment);
+			
+			dest.mkdirs();
+			
+			newBranchFilePath = newBranchFilePath + File.separator + fileName;
+			
+			dest = new File(newBranchFilePath);
+						
+			dest.createNewFile();
+			destComment.createNewFile();
+			
+			Helper.copyIntoFile(src, dest);
+			Helper.copyIntoFile(srcComment, destComment);
 			
 		}while(confirm != true);
 	}
