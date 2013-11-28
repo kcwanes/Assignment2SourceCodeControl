@@ -15,6 +15,7 @@ public class Helper {
 
 	//public static String RepoPath = "/Users/kcwanes/Programming/Repo";
 	public static String RepoPath = "C:\\Users\\Vuk\\Desktop\\repo";
+	
 	public static String getExtension (String file){
 		// finds the extension of the input file
 		String extension = "";
@@ -38,7 +39,7 @@ public class Helper {
 		String extension = getExtension(file);
 
 		// test output (delete after)
-		System.out.println("The extension of " + file + " is " + extension);
+		//System.out.println("The extension of " + file + " is " + extension);
 
 		// replace the extension of the filename with nothing so that
 		// we can append the timestamp before the extension
@@ -187,6 +188,15 @@ public class Helper {
     	return false;
     	}
     }
+    
+    /**
+     * For a given String, output the contents to a
+     * File object
+     * @param file name of the File object we want to receive the String
+     * @param string the String we want to use an input
+     * @return true if operation is successful
+     * @throws FileNotFoundException if file cannot be located
+     */
    
     public static boolean printStringToFile(File file, String string) 
     		throws FileNotFoundException{
@@ -195,6 +205,12 @@ public class Helper {
 		out.close();
 		return true;
     }
+    
+    /**
+     * Return the total number of revisions for a given file
+     * @param file the file, as a string
+     * @return number of revisions as an int
+     */
     
     public static int countFileVersions(String file){
     	String filePath = RepoPath + File.separator + stripExtension(file);
@@ -208,6 +224,15 @@ public class Helper {
     	return count;	
     }
     
+    /**
+     * For a given file and version number, return the path of that particular
+     * file along with the path for its comment
+     * @param file the file we are seeking the path for, as a String
+     * @param version revision number as an int
+     * @return an array of 2 strings that contain the path of the file and
+     * the path of that file's comment, respectively
+     */
+    
 	public static String[] getPathToFileVersion(String file, int version){
     	String filePath = RepoPath + File.separator + stripExtension(file);
     	String[] results = new String[2];
@@ -218,13 +243,20 @@ public class Helper {
     			count++;
     			if (count == version){
     				results[0] = f.getPath() + File.separator + file;
-    				results[1] = f.getPath() + File.separator + "Comment.txt";
+    				results[1] = f.getPath() + File.separator + "comment.txt";
     			}
     			
     		}
     	}
     	return results;
     }
+	
+	/**
+	 * Output the file contents to the terminal
+	 * @param path the path of the file we are outputting the contents of
+	 * @return
+	 * @throws Exception
+	 */
     
     
     @SuppressWarnings("finally")

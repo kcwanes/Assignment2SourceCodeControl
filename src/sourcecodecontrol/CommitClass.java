@@ -22,6 +22,7 @@ public class CommitClass {
 	public void commitMethod() throws IOException {
 		String fileName;
 		String path;
+		String branch;
 		Boolean confirm;
 		String comment;
 		String theTime;
@@ -42,8 +43,30 @@ public class CommitClass {
 			System.out.println("Enter the name of the file you wish to commit:");
 			fileName = in.nextLine();
 			
+			System.out.println("Enter the branch you want to commit to ('main' is the default):");
+			branch = in.nextLine();
+			
 			pathWithFileName = path + File.separator + fileName;
+			String branchFilePath = Helper.RepoPath + File.separator + Helper.stripExtension(fileName) + File.separator + branch;
+			
+			System.out.println("The branch file path is:");
+			System.out.println(branchFilePath);
 		
+			File branchPath = new File(branchFilePath);
+			
+			
+			//If the user tried to commit to a non-existent branch, quit the program.
+			//Exception: If they are trying to commit to 'main' and it doesnt already exist,
+			//create the 'main' branch.
+			//User must 'branch' to commit to another branch that is not 'main'
+			if (branchPath.exists() == false && branch != "main")
+			{
+				System.out.println("Branch '" + branch + "' does not exist.");
+				System.out.println("Please use the command 'branch' before commiting to a non-existent branch.");
+				System.out.println("Program quitting.");
+				System.exit(1);
+			}
+			
 			//File repoFolder = new File (pathWithFileName);
 			//repoFolder.mkdirs();
 	
@@ -62,8 +85,8 @@ public class CommitClass {
 		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd-HH-mm-ss");
 		theTime = sdf.format(date);
 
-
-		newDir = Helper.RepoPath + File.separator + Helper.stripExtension(fileName) + File.separator + theTime;
+		//simplify this
+		newDir = Helper.RepoPath + File.separator + Helper.stripExtension(fileName) + File.separator + branch + File.separator + theTime;
 		System.out.println("newFilePath = " + newDir);
 		
 		File src = new File(path + File.separator + fileName);
@@ -71,7 +94,7 @@ public class CommitClass {
 		newDir = newDir.replace("\\", "\\\\");
 		
 		newPath = newDir + File.separator + fileName;
-		newCommentPath = newDir + File.separator + "Comment.txt";
+		newCommentPath = newDir + File.separator + "comment.txt";
 		
 		newPath = newPath.replace("\\", "\\\\");
 		newCommentPath = newCommentPath.replace("\\", "\\\\");		

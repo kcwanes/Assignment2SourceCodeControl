@@ -59,6 +59,8 @@ public class SourceCodeControl {
         else if (cmd.equalsIgnoreCase("Branch"))
         {
         	Helper.EchoString("Starting Branch...");
+        	BranchClass branch = new BranchClass();
+        	branch.makeBranch();
             Helper.EchoString("You Have Branched Your Source Code.");
             return Helper.EchoString("Please input another command.");
         }
