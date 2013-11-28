@@ -20,14 +20,19 @@ public class BranchClass {
 			confirm = Helper.Confirm("\nIs this correct? (y|n)");
 			System.out.println("Enter the name of the new branch (latest revision will be copied from 'main'):");
 			newBranch = in.nextLine();
-			System.out.print(newBranch);
+			System.out.print("The new branch will be called '"+ newBranch + "'.");
 			confirm = Helper.Confirm("\nIs this correct? (y|n)");
 			
 			System.out.println("The new branch file path is:");
 			String newBranchFilePath = Helper.RepoPath + File.separator + Helper.stripExtension(fileName) + File.separator + newBranch;
 			System.out.println(newBranchFilePath);
 			
+			String sourceMainBranch = Helper.RepoPath + File.separator + Helper.stripExtension(fileName) + File.separator + "main";
 			
+			System.out.println("The source main branch file path is:");
+			System.out.println(sourceMainBranch);
+			
+			//Helper.countFileVersions(sourceMainBranch);
 		}while(confirm != true);
 	}
 

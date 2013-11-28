@@ -213,7 +213,7 @@ public class Helper {
      */
     
     public static int countFileVersions(String file){
-    	String filePath = RepoPath + File.separator + stripExtension(file);
+    	String filePath = RepoPath + File.separator + stripExtension(file) + File.separator + "main";
     	int count = 0;
     	File dir = new File(filePath);
     	for (File f : dir.listFiles()){
@@ -234,7 +234,7 @@ public class Helper {
      */
     
 	public static String[] getPathToFileVersion(String file, int version){
-    	String filePath = RepoPath + File.separator + stripExtension(file);
+    	String filePath = RepoPath + File.separator + stripExtension(file) + File.separator + "main";
     	String[] results = new String[2];
     	File dir = new File(filePath);
     	int count = 0;

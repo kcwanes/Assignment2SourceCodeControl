@@ -22,6 +22,7 @@ public class CheckoutClass {
 
 			specVersion = Helper.Confirm("Would you like to checkout a specific version of this file? " +
 					"Selecting 'no' means receiving the latest version. (y|n)");
+			
 			if (specVersion){ 
 				System.out.print("Which version would you like to checkout?");
 				version = in.nextLine();
@@ -34,8 +35,12 @@ public class CheckoutClass {
 			else if(!specVersion){
 				v = Helper.countFileVersions(fileName);
 				path = Helper.getPathToFileVersion(fileName + ".txt", v);
+				System.out.println("The contents of this file revision are:");
 				Helper.printFileToTerminal(path[0]);
+				System.out.print("\n");
+				System.out.println("The comment associated with this file revision is:");
 				Helper.printFileToTerminal(path[1]);
+				System.out.print("\n");
 			}
 
 			confirm = Helper.Confirm("Is this correct? (y|n)");
