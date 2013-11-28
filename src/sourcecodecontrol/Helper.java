@@ -3,7 +3,12 @@ package sourcecodecontrol;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Scanner;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 
 public class Helper {
@@ -13,8 +18,8 @@ public class Helper {
 	 * @return the extension as a string
 	 */
 
-	//public static String RepoPath = "/Users/kcwanes/Programming/Repo";
-	public static String RepoPath = "C:\\Users\\Vuk\\Desktop\\repo";
+	public static String RepoPath = "/Users/kcwanes/Programming/Repo";
+	//public static String RepoPath = "C:\\Users\\Vuk\\Desktop\\repo";
 	
 	public static String getExtension (String file){
 		// finds the extension of the input file
@@ -177,11 +182,9 @@ public class Helper {
     	System.out.print(message);
     	String result = scanner.nextLine();
     	if (result.equalsIgnoreCase("yes") || result.equalsIgnoreCase("y")){
-    		System.out.println("You said yes.");
     		return true;
     	}
     	else if (result.equalsIgnoreCase("no") || result.equalsIgnoreCase("no")){
-    		System.out.println("You said no.");
     		return false;
     	}
     	else{
@@ -217,7 +220,8 @@ public class Helper {
     	int count = 0;
     	File dir = new File(filePath);
     	for (File f : dir.listFiles()){
-    		if (f.isDirectory()){
+    		if (f.isDirectory() && !f.isHidden()){
+    			
     			count++;
     		}
     	}
@@ -241,7 +245,7 @@ public class Helper {
     	File dir = new File(filePath);
     	int count = 0;
     	for (File f : dir.listFiles()){
-    		if(f.isDirectory()){
+    		if(f.isDirectory() && !f.isHidden()){
     			count++;
     			if (count == version){
     				results[0] = f.getPath() + File.separator + file;
@@ -283,6 +287,77 @@ public class Helper {
     	    return 0;
     	}
     }
+    
+    public static String getFilePathInRepo(String file){
+    	String path = RepoPath + File.separator + file;
+    	File f = new File(path);
+    	if (f.exists()){
+    		return path;
+    	}
+    	else {return null;}
+    }
+    
+    public static String PrettifyDate(String theTime) 
+    		throws ParseException{
+
+    	SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd-HH-mm-ss");
+    	Date date = sdf.parse(theTime);
+    	SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
+    	return sdf2.format(date);
+
+
+    }
+    
+	public static int printFileMetaData( String path){
+    	File dir = new File(path);
+    	if(dir.exists())
+    	{
+    		try{
+	    		File c = new File(dir.getPath() + File.separator + "Comment.txt");
+	    		BufferedReader br = new BufferedReader(new FileReader(c));
+	    		String DateTime;
+	    		DateTime = br.readLine();
+	    		String date = PrettifyDate(DateTime);
+	    		System.out.println(date);
+	    		String line;
+	    		while ((line = br.readLine()) != null) {
+	    		   System.out.println(line);
+	    		}
+	    		System.out.println("");
+	    		br.close();
+	    		return 0;
+    		} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+    	return 0;
+	}
+	
+	public static int printMetaForAllFilesInBranch(String path){
+		File dir = new File(path);
+		for (File f : dir.listFiles()){
+			if(!f.isHidden()){
+	    		printFileMetaData(f.getPath());
+			}
+		}
+		return 0;
+	}
+	
+	public static int printMetaForAllFiles(String path){
+		File dir = new File(path);
+		if( dir.exists()){
+			for (File f : dir.listFiles()){
+				if (!f.isHidden()){
+					Helper.printMetaForAllFilesInBranch(f.getPath());
+				}
+			}
+		}
+		return 0;
+	}
     
 }
 

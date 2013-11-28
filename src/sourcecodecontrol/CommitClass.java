@@ -23,7 +23,6 @@ public class CommitClass {
 		String fileName;
 		String path;
 		String branch;
-		Boolean confirm;
 		String comment;
 		String theTime;
 		String pathWithFileName;
@@ -72,14 +71,10 @@ public class CommitClass {
 	
 			System.out.println("\nThe file is: ");
 			System.out.println(pathWithFileName);
-			confirm = Helper.Confirm("Is this correct? (y|n)");
-		}while(confirm != true);
+		}while(Helper.Confirm("Is this correct? (y|n)") != true);
 	
 		System.out.println("Enter a comment for this revision:");
 		comment = in.nextLine();
-		
-		System.out.println("Your comment is:");
-		System.out.println(comment);
 		
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd-HH-mm-ss");
@@ -87,7 +82,6 @@ public class CommitClass {
 
 		//simplify this
 		newDir = Helper.RepoPath + File.separator + Helper.stripExtension(fileName) + File.separator + branch + File.separator + theTime;
-		System.out.println("newFilePath = " + newDir);
 		
 		File src = new File(path + File.separator + fileName);
 

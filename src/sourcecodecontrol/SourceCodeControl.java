@@ -48,6 +48,8 @@ public class SourceCodeControl {
         else if (cmd.equalsIgnoreCase("GetHistory"))
         {
         	Helper.EchoString("You have requested a history.");
+        	GetHistoryClass history = new GetHistoryClass();
+        	history.getHistoryMethod();
         	return Helper.EchoString("Please input another command.");
         }
         else if (cmd.equalsIgnoreCase("Merge"))
