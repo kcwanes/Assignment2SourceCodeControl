@@ -63,7 +63,7 @@ public class CommitClass {
 			// already exist,
 			// create the 'main' branch.
 			// User must 'branch' to commit to another branch that is not 'main'
-			if (branchPath.exists() == false && !branch.equals("main")) {
+			if (branchPath.exists() == false && branch.equals("main") == false) {
 				System.out.println("Branch '" + branch + "' does not exist.");
 				System.out
 						.println("Please use the command 'branch' before commiting to a non-existent branch.");

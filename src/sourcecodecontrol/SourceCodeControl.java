@@ -55,6 +55,8 @@ public class SourceCodeControl {
         else if (cmd.equalsIgnoreCase("Merge"))
         {
         	Helper.EchoString("Starting Merge...");
+        	MergeClass merge = new MergeClass();
+        	merge.diff();
             Helper.EchoString("You Have Merged Your Files.");
             return Helper.EchoString("Please input another command.");
         }
