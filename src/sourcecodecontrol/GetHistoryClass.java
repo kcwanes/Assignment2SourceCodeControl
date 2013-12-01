@@ -14,7 +14,7 @@ public class GetHistoryClass {
 		
 		Scanner in = new Scanner(System.in);
 		do{
-			System.out.println("Enter the name of the file you wish to commit (with the file extension):");
+			System.out.println("Enter the name of the file you want the history of (with the file extension):");
 			fileName = in.nextLine();
 
 			if(Helper.Confirm("Would you like to print the history of this file in a certain branch? (y|n)")){
