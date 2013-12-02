@@ -3,8 +3,7 @@ package sourcecodecontrol;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -389,6 +388,27 @@ public class Helper {
 		}
 	}
 
+	public static List<String> ConvertFileToLines(String path){
+		File dir = new File(path);
+		List<String> fileResults = new LinkedList<String>();
+		String line = "";
+		if(dir.exists()){
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(dir));
+				while((line = br.readLine()) != null){
+					fileResults.add(line);
+				}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		return fileResults;
+	}
 }
 
 
