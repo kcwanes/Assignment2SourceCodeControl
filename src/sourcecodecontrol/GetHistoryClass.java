@@ -36,7 +36,7 @@ public class GetHistoryClass {
 			}
 			else {
 				path = Helper.RepoPath + File.separator + Helper.stripExtension(fileName);
-				Helper.printMetaForAllFiles(path);
+				Helper.printMetaForAllFilesinDir(path);
 			}	
 			
 		}while(Helper.Confirm("Is this correct? (y|n)") != true);
