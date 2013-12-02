@@ -322,6 +322,14 @@ public class Helper {
     	return sdf2.format(date);
     }
     
+	/**
+	 * Output the timestamp and comment of a commit to the terminal
+	 * @param path the path of the file we are outputting the metadata of
+	 * @return returns 0 on success
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public static int printFileMetaData( String path){
     	File dir = new File(path);
     	if(dir.exists())
@@ -351,17 +359,26 @@ public class Helper {
     	return 0;
 	}
 	
-	public static int printMetaForAllFilesInBranch(String path){
+	/**
+	 * Loops through a branch and prints the metadata of a file
+	 * @param path the path of the branch that we are printing
+	 */
+	public static void printMetaForAllFilesInBranch(String path){
 		File dir = new File(path);
 		for (File f : dir.listFiles()){
 			if(!f.isHidden()){
 	    		printFileMetaData(f.getPath());
 			}
 		}
-		return 0;
 	}
 	
-	public static int printMetaForAllFiles(String path){
+	/**
+	 * Loops through all branches and 
+	 * @param path the path of the file we are outputting the contents of
+	 * @return
+	 * @throws Exception
+	 */
+	public static void printMetaForAllFilesinDir(String path){
 		File dir = new File(path);
 		if( dir.exists()){
 			for (File f : dir.listFiles()){
@@ -370,7 +387,6 @@ public class Helper {
 				}
 			}
 		}
-		return 0;
 	}
 
 }
