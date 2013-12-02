@@ -235,6 +235,7 @@ public class Helper {
      * For a given file and version number, return the path of that particular
      * file along with the path for its comment
      * @param file the file we are seeking the path for, as a String
+     * @param branch  the branch in which we are searching for the file, as a string
      * @param version revision number as an int
      * @return an array of 4 strings that contain the absolute path of the file and
      * the path of that file's comment (the first 2 strings) and also the relative file path
@@ -291,7 +292,12 @@ public class Helper {
     	}
     }
     
-    public static String getFilePathInRepo(String file){
+	/**
+	 * Gets he path of the file in the repository
+	 * @param path the path of the file we are outputting the contents of
+	 * @return the path to the top level of the file if that folder exists. A Null pointer if it does not.
+	 */
+    public static String getFileDirPathInRepo(String file){
     	String path = RepoPath + File.separator + file;
     	File f = new File(path);
     	if (f.exists()){
@@ -300,6 +306,13 @@ public class Helper {
     	else {return null;}
     }
     
+	/**
+	 * convert the timestamp of the commit from yy-MM-dd-HH-mm-ss(used for file tracking purposes) 
+	 * to yyyy MMM dd HH:mm:ss (which is much easier for users to read and understand)
+	 * @param theTime the timestamp which is being converted
+	 * @return a string of formatted text which represents the date
+	 * @throws ParseException
+	 */
     public static String PrettifyDate(String theTime) 
     		throws ParseException{
 

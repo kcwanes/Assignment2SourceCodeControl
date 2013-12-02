@@ -16,8 +16,10 @@ public class MergeClass {
 			while ((line = in.readLine()) != null) {
 				lines.add(line);
 			}
+			in.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+			
 		}
 		return lines;
 	}
@@ -26,7 +28,7 @@ public class MergeClass {
 
 		String[] path = new String[2];
 
-		System.out.println("Enter the name of the file (with exntension):");
+		System.out.println("Enter the name of the file (with extension):");
 		Scanner uIS = new Scanner(System.in);
 		String filename = uIS.next();
 		System.out.println("The filename is:");
