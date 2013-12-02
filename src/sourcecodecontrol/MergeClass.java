@@ -35,14 +35,12 @@ public class MergeClass {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		List<String> original = Helper.ConvertFileToLines(pathX[0]);		
-		List<String> revised = Helper.ConvertFileToLines(pathY[0]);
 
-		Patch patch = DiffUtils.diff(original, revised);
 
-		for (Delta delta : patch.getDeltas()) {
-			System.out.println(delta.toString());
+		List<String> diff = Helper.CalculateDiff(pathX[0], pathY[0]);
+
+		for (String line : diff) {
+			System.out.println(line);
 		}
 	}
 }
