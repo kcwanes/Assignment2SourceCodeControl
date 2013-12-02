@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.*;
 
 public class MergeClass {
-	// Helper method for get the file content
 	private List<String> fileToLines(String filename) {
 		List<String> lines = new LinkedList<String>();
 		String line = "";
@@ -24,13 +23,31 @@ public class MergeClass {
 	}
 
 	public void diff() {
-		List<String> original = fileToLines("originalFile.txt");
-		List<String> revised = fileToLines("revisedFile.xt");
 
-		// Compute diff. Get the Patch object. Patch is the container for
-		// computed deltas.
+		String[] path = new String[2];
+
+		System.out.println("Enter the name of the file (with exntension):");
+		Scanner uIS = new Scanner(System.in);
+		String filename = uIS.next();
+		System.out.println("The filename is:");
+		System.out.println(filename);
+
+		System.out
+				.println("Enter the name of the branch you want to use as your 'base branch' (referred to as branch X in the assignment instructions): ");
+		String branchX = uIS.next();
+
+		System.out
+				.println("Enter the name of the branch you want to use as the branch that suggestions will be drawn from (referred to as branch Y in the assignment instructions): ");
+		String branchY = uIS.next();
 		
-		System.out.println("Testing!");
+		List<String> original = fileToLines(filename);
+		
+		path = Helper.getPathToFileVersion(filename + ".txt", v);
+		Helper.printFileToTerminal(path[0]);
+		Helper.printFileToTerminal(path[1]);
+		
+		List<String> revised = fileToLines(filename);
+
 		Patch patch = DiffUtils.diff(original, revised);
 
 		for (Delta delta : patch.getDeltas()) {

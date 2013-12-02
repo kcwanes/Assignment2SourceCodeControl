@@ -17,8 +17,8 @@ public class Helper {
 	 * @return the extension as a string
 	 */
 
-	public static String RepoPath = "/Users/kcwanes/Programming/Repo";
-	//public static String RepoPath = "C:\\Users\\Vuk\\Desktop\\repo";
+	//public static String RepoPath = "/Users/kcwanes/Programming/Repo";
+	public static String RepoPath = "C:\\Users\\Vuk\\Desktop\\repo";
 	
 	public static String getExtension (String file){
 		// finds the extension of the input file
