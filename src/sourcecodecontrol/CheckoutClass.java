@@ -2,6 +2,17 @@ package sourcecodecontrol;
 
 import java.util.Scanner;
 
+/**
+ * Main method for the checkout feature gets the file path and
+ * filename of the file the user wishes to checkout 
+ * 
+ * The user can specify a version number to retrieve
+ * If a user does not specify a version number, the latest version of the main branch will be returned.
+ *
+ * 
+ * @throws Exception
+ */
+
 public class CheckoutClass {
 
 	public void checkoutMethod() throws Exception {

@@ -4,6 +4,17 @@ import java.io.*;
 import java.util.Scanner;
 import java.lang.String;
 
+/**
+ * Main method for the getHistory feature gets the file path and
+ * filename of the file. The file name is then processed in helper functions.
+ * The timestamps and comments in the 'Comment.txt' files of a certain file branch are processed
+ * and are printed to the terminal for the user.
+ * 
+ * Will take in the name of the file, and the option to get the history of a particular branch.
+ * If a branch is not specified, this class will print the entire file to the terminal
+ * 
+ * @throws IOException
+ */
 public class GetHistoryClass {
 	public void getHistoryMethod(){
 		

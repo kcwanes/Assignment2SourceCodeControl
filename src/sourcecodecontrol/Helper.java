@@ -8,7 +8,11 @@ import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-
+/**
+ * The Helper class encapsulates the functions that are utilized by other  
+ * operation classes (aka: Commit, Checkout, Merge, Branch and GetHistory.
+ * 
+ */
 
 public class Helper {
 	/**
