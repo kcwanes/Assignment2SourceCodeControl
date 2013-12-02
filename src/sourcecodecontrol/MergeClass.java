@@ -27,8 +27,8 @@ public class MergeClass {
 				.println("Enter the name of the branch you want to use as the branch that suggestions will be drawn from (referred to as branch Y in the assignment instructions): ");
 		String branchY = uIS.next();
 		
-		int x = Helper.countFileVersions(Helper.RepoPath + File.separator + Helper.stripExtension(filename) + File.separator + branchX);
-		int y = Helper.countFileVersions(Helper.RepoPath + File.separator + Helper.stripExtension(filename) + File.separator + branchY);
+		int x = Helper.countFileVersions(Helper.stripExtension(filename), branchX);
+		int y = Helper.countFileVersions(Helper.stripExtension(filename), branchY);
 		try {
 			pathX = Helper.getPathToFileVersion(filename, branchX, x);
 			pathY = Helper.getPathToFileVersion(filename, branchY, y);
@@ -43,7 +43,7 @@ public class MergeClass {
 		Patch patch = DiffUtils.diff(original, revised);
 
 		for (Delta delta : patch.getDeltas()) {
-			System.out.println(delta);
+			System.out.println(delta.toString());
 		}
 	}
 }

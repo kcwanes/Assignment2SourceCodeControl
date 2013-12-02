@@ -29,7 +29,7 @@ public class CheckoutClass {
 
 		do {
 			System.out
-					.println("Enter the name of the file you wish to checkout (without the file extension):");
+					.println("Enter the name of the file you wish to checkout (including the file extension):");
 			fileName = in.nextLine();
 
 			System.out.println("Enter the branch of the file you wish to checkout from: ");
@@ -43,13 +43,13 @@ public class CheckoutClass {
 				System.out.print("Which version would you like to checkout?");
 				version = in.nextLine();
 				v = Integer.parseInt(version);
-				path = Helper.getPathToFileVersion(fileName + ".txt", branch,  v);
+				path = Helper.getPathToFileVersion(fileName, branch,  v);
 				Helper.printFileToTerminal(path[0]);
 				Helper.printFileToTerminal(path[1]);
 
 			} else if (!specVersion) {
-				v = Helper.countFileVersions(fileName);
-				path = Helper.getPathToFileVersion(fileName + ".txt",branch, v);
+				v = Helper.countFileVersions(fileName, branch);
+				path = Helper.getPathToFileVersion(fileName,branch, v);
 				System.out.println("The contents of this file revision are:");
 				Helper.printFileToTerminal(path[0]);
 				System.out.print("\n");

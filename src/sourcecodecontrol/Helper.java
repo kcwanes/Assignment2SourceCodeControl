@@ -20,8 +20,8 @@ public class Helper {
 	 * @return the extension as a string
 	 */
 
-	//public static String RepoPath = "/Users/kcwanes/Programming/Repo";
-	public static String RepoPath = "C:\\Users\\Vuk\\Desktop\\repo";
+	public static String RepoPath = "/Users/kcwanes/Programming/Repo";
+	//public static String RepoPath = "C:\\Users\\Vuk\\Desktop\\repo";
 	
 	public static String getExtension (String file){
 		// finds the extension of the input file
@@ -217,8 +217,8 @@ public class Helper {
      * @return number of revisions as an int
      */
     
-    public static int countFileVersions(String file){
-    	String filePath = RepoPath + File.separator + stripExtension(file) + File.separator + "main";
+    public static int countFileVersions(String file, String branch){
+    	String filePath = RepoPath + File.separator + stripExtension(file) + File.separator + branch;
     	int count = 0;
     	File dir = new File(filePath);
     	for (File f : dir.listFiles()){

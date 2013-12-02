@@ -48,7 +48,7 @@ public class BranchClass {
 		System.out.println("The source main branch file path is:");
 		System.out.println(sourceMainBranch);
 
-		int latestVersion = Helper.countFileVersions(fileName);
+		int latestVersion = Helper.countFileVersions(fileName, "main");
 
 		// 'path' array will store the output of the 'getPathToFileVersion'
 		// method, which returns a variety of file path extensions needed for
