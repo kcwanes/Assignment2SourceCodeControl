@@ -10,7 +10,7 @@ import java.util.*;
 
 public class MergeClass {
 
-	public void diff() {
+	public void mergeMethod() {
 
 		String[] pathX = new String[5];
 		String[] pathY = new String[5];
@@ -33,7 +33,6 @@ public class MergeClass {
 			pathX = Helper.getPathToFileVersion(filename, branchX, x);
 			pathY = Helper.getPathToFileVersion(filename, branchY, y);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

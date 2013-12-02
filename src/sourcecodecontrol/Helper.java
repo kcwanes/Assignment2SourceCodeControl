@@ -409,6 +409,41 @@ public class Helper {
 		}
 		return fileResults;
 	}
+	
+	
+	public static List<String> CalculateDiff(String Path1, String Path2){
+		List<String> diff = new LinkedList<String>();
+		Boolean found = false;
+		String lineA = "";
+		String lineB = "";
+		File a = new File(Path1);
+		File b = new File(Path2);
+		
+		if(a.exists() && b.exists()){
+			try {
+				BufferedReader brA = new BufferedReader(new FileReader(a));
+				BufferedReader brB = new BufferedReader(new FileReader(b));
+				while((lineA = brA.readLine()) != null){
+					while((lineB = brB.readLine()) != null ){
+						if(lineA.equalsIgnoreCase(lineB)){
+							found = true;
+						}
+					}
+					if(found == false){ diff.add(lineA);}
+				}
+				while((lineB = brB.readLine()) != null){
+					diff.add(lineB);
+				}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return diff;
+	}
 }
 
 

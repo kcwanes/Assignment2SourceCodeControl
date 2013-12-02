@@ -56,7 +56,7 @@ public class SourceCodeControl {
         {
         	Helper.EchoString("Starting Merge...");
         	MergeClass merge = new MergeClass();
-        	merge.diff();
+        	merge.mergeMethod();
             Helper.EchoString("You Have Merged Your Files.");
             return Helper.EchoString("Please input another command.");
         }
@@ -66,11 +66,6 @@ public class SourceCodeControl {
         	BranchClass branch = new BranchClass();
         	branch.makeBranch();
             Helper.EchoString("You Have Branched Your Source Code.");
-            return Helper.EchoString("Please input another command.");
-        }
-        else if (cmd.equalsIgnoreCase("Delete"))
-        {
-            Helper.EchoString("You Have Deleted Your Files.");
             return Helper.EchoString("Please input another command.");
         }
         else if (cmd.equalsIgnoreCase("Exit")) 
