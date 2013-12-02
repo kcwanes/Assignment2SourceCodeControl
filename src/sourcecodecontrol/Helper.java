@@ -242,8 +242,8 @@ public class Helper {
      * @throws IOException 
      */
     
-	public static String[] getPathToFileVersion(String file, int version) throws IOException{
-    	String filePath = RepoPath + File.separator + stripExtension(file) + File.separator + "main";
+	public static String[] getPathToFileVersion(String file, String branch, int version) throws IOException{
+    	String filePath = RepoPath + File.separator + stripExtension(file) + File.separator + branch;
     	String[] results = new String[5];
     	File dir = new File(filePath);
     	int count = 0;
@@ -307,8 +307,6 @@ public class Helper {
     	Date date = sdf.parse(theTime);
     	SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
     	return sdf2.format(date);
-
-
     }
     
 	public static int printFileMetaData( String path){

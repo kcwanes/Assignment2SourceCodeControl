@@ -21,6 +21,7 @@ public class CheckoutClass {
 		Boolean confirm;
 
 		String version;
+		String branch;
 		int v;
 		Boolean specVersion;
 
@@ -31,6 +32,9 @@ public class CheckoutClass {
 					.println("Enter the name of the file you wish to checkout (without the file extension):");
 			fileName = in.nextLine();
 
+			System.out.println("Enter the branch of the file you wish to checkout from: ");
+			System.out.println("main is the default branch. If you have not branched the document, please type 'main'");
+			branch = in.nextLine();
 			specVersion = Helper
 					.Confirm("Would you like to checkout a specific version of this file? "
 							+ "Selecting 'no' means receiving the latest version. (y|n)");
@@ -39,13 +43,13 @@ public class CheckoutClass {
 				System.out.print("Which version would you like to checkout?");
 				version = in.nextLine();
 				v = Integer.parseInt(version);
-				path = Helper.getPathToFileVersion(fileName + ".txt", v);
+				path = Helper.getPathToFileVersion(fileName + ".txt", branch,  v);
 				Helper.printFileToTerminal(path[0]);
 				Helper.printFileToTerminal(path[1]);
 
 			} else if (!specVersion) {
 				v = Helper.countFileVersions(fileName);
-				path = Helper.getPathToFileVersion(fileName + ".txt", v);
+				path = Helper.getPathToFileVersion(fileName + ".txt",branch, v);
 				System.out.println("The contents of this file revision are:");
 				Helper.printFileToTerminal(path[0]);
 				System.out.print("\n");

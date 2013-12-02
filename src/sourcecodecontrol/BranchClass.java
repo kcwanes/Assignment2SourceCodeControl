@@ -54,7 +54,7 @@ public class BranchClass {
 		// method, which returns a variety of file path extensions needed for
 		// parsing.
 		String[] path = new String[5];
-		path = Helper.getPathToFileVersion(fileName, latestVersion);
+		path = Helper.getPathToFileVersion(fileName, "main", latestVersion);
 
 		System.out.println("path[0] = " + path[0]);
 		System.out.println("path[1] = " + path[1]);
